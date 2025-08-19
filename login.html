@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/all.min.css" />
+</head>
+<body>
+
+
+<!-- Header -->
+<header class="navbar">
+<div class="logo"><a href="main.html">BrandName</a></div>
+
+  <nav>
+    <ul>
+      <li><a href="menu.html#meats">Meats</a></li>
+      <li><a href="menu.html#main-dishes">Main Dishes</a></li>
+      <li><a href="menu.html#sandwiches">Sandwiches</a></li>
+      <li><a href="menu.html#offers">Offers</a></li>
+    </ul>
+  </nav>
+  <div id="navbar-right">
+    <a href="login.html">Login</a>
+    <a href="custom.html">Customer Service</a>
+  </div>
+</header>
+
+
+  <!-- عنوان القسم -->
+  <div class="section-title">
+    <h2>Login</h2>
+  </div>
+  
+  <main>
+    <h2>تسجيل الدخول</h2>
+    <form id="loginForm" class="auth-form">
+      <input type="email" id="email" placeholder="Mail" >
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <button type="submit">دخول</button>
+      <a href="register.html">ليس لديك حساب؟ إنشاء حساب</a>
+    </form>
+  </main>
+  
+
+  <!-- <script src="auth.js"></script> -->
+  <!-- <script>
+    
+    fetch("navbar.html").then(r => r.text()).then(d => {
+      document.getElementById("navbar").innerHTML = d;
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+
+      if (storedUser && storedUser.email === email && storedUser.password === password) {
+        storedUser.loggedIn = true;
+        localStorage.setItem("user", JSON.stringify(storedUser));
+        alert("تم تسجيل الدخول بنجاح");
+        window.location.href = "main.html";
+        } else {
+          alert("البريد أو كلمة المرور غير صحيحة");
+        }
+        });
+      </script> -->
+      <script src="script.js"></script>
+      <script>
+    fetch("navbar.html").then(r => r.text()).then(d => {
+      document.getElementById("navbar").innerHTML = d;
+    });
+
+    // تسجيل الدخول
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // مستخدم افتراضي
+      const defaultUser = {
+        username: "Youssef Eldemerdash",
+        email: "test@test.com",
+        password: "123456",
+        loggedIn: false
+      };
+
+      let storedUser = JSON.parse(localStorage.getItem("user")) || defaultUser;
+
+      if (storedUser.email === email && storedUser.password === password) {
+        storedUser.loggedIn = true;
+        localStorage.setItem("user", JSON.stringify(storedUser));
+        alert("تم تسجيل الدخول بنجاح");
+        window.location.href = "main.html";
+      } else {
+        alert("البريد أو كلمة المرور غير صحيحة");
+      }
+    });
+  </script>
+
+</body>
+</html>
+

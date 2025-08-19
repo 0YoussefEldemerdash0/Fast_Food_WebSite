@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلباتي</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    .orders-section-title h2 {
+        text-align: center;
+        color: #d4a030;
+        font-size: 2.2em;
+        margin-top: 40px;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+    }
+    .order-card {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+        max-width: 500px;
+        margin: 32px auto;
+        padding: 28px 22px;
+        font-size: 18px;
+        color: #333;
+        text-align: right;
+        position: relative;
+        border-right: 6px solid #d4a030;
+        transition: box-shadow 0.2s;
+    }
+    .order-card:hover {
+        box-shadow: 0 8px 32px rgba(212,160,48,0.13);
+        border-right: 6px solid #f9f3e6;
+    }
+    .order-card h3 {
+        color: #d4a030;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+        margin-top: 0;
+    }
+    .order-card p {
+        margin: 10px 0;
+        font-size: 16px;
+        border-bottom: 1px solid #f3e6c7;
+        padding-bottom: 6px;
+    }
+    .order-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 12px 0 0 0;
+    }
+    .order-card ul li {
+        background: #f9f3e6;
+        margin-bottom: 7px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #333;
+        border-right: 3px solid #d4a030;
+    }
+    #no-orders-message {
+        text-align: center;
+        color: #c0392b;
+        font-size: 1.2em;
+        margin-top: 40px;
+    }
+    </style>
+</head>
+
+<body>
+
+   <!-- Header -->
+<header class="navbar">
+  <div class="logo"><a href="main.html">BrandName</a></div>
+  <nav>
+    <ul>
+      <li><a href="menu.html#meats">Meats</a></li>
+      <li><a href="menu.html#main-dishes">Main Dishes</a></li>
+      <li><a href="menu.html#sandwiches">Sandwiches</a></li>
+      <li><a href="menu.html#offers">Offers</a></li>
+    </ul>
+  </nav>
+  <div id="navbar-right"></div>
+</header>
+
+<div class="page-content-container">
+    <div class="orders-section-title section-title">
+        <h2>طلباتي</h2>
+    </div>
+    <div id="orders-list">
+        <p id="no-orders-message">لا يوجد لديك أي طلبات سابقة.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const userOrders = JSON.parse(localStorage.getItem('userOrders')) || [];
+    const ordersList = document.getElementById('orders-list');
+    const noOrdersMessage = document.getElementById('no-orders-message');
+
+    if (userOrders.length > 0) {
+        noOrdersMessage.style.display = 'none';
+        userOrders.forEach(order => {
+            const orderDiv = document.createElement('div');
+            orderDiv.className = 'order-card';
+            orderDiv.innerHTML = `
+                <h3>طلب رقم ${order.orderId}</h3>
+                <p><strong>التاريخ:</strong> ${order.date}</p>
+                <p><strong>إجمالي السعر:</strong> ${order.total} جم</p>
+                <ul>
+                    ${order.items.map(item => `<li>${item.name} - ${item.price} جم</li>`).join('')}
+                </ul>
+            `;
+            ordersList.appendChild(orderDiv);
+        });
+    }
+});
+</script>
+</body>
+</html>

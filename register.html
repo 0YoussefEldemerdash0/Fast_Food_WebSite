@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Restaurant — Register</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="css/all.min.css" />
+</head>
+
+<!-- Header -->
+<header class="navbar">
+<div class="logo"><a href="main.html">BrandName</a></div>
+
+  <nav>
+    <ul>
+      <li><a href="menu.html#meats">Meats</a></li>
+      <li><a href="menu.html#main-dishes">Main Dishes</a></li>
+      <li><a href="menu.html#sandwiches">Sandwiches</a></li>
+      <li><a href="menu.html#offers">Offers</a></li>
+    </ul>
+  </nav>
+  <div id="navbar-right">
+    <a href="login.html">Login</a>
+    <a href="custom.html">Customer Service</a>
+  </div>
+</header>
+   
+
+     <main>
+    <h2>إنشاء حساب</h2>
+    <form id="signupForm" class="auth-form">
+      <input type="text" id="username" placeholder="الاسم" required>
+      <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <button type="submit">تسجيل</button>
+    </form>
+  </main>
+
+   <script>
+    fetch("navbar.html").then(r => r.text()).then(d => {
+      document.getElementById("navbar").innerHTML = d;
+    });
+
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const user = {
+        username: document.getElementById("username").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("password").value,
+        loggedIn: false
+      };
+      localStorage.setItem("user", JSON.stringify(user));
+      alert("تم إنشاء الحساب بنجاح! يمكنك تسجيل الدخول الآن.");
+      window.location.href = "login.html";
+    });
+  </script>
+
+    
+    <script src="scripts.js"></script>
+</body>
+</html>

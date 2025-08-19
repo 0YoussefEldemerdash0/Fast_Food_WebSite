@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملفي الشخصي</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    /* تنسيق ملف الشخصي */
+    .profile-info-container {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 32px 24px;
+        font-size: 18px;
+        color: #333;
+        text-align: right;
+        position: relative;
+    }
+    .profile-info-container p {
+        margin: 18px 0;
+        font-size: 17px;
+        border-bottom: 1px solid #f3e6c7;
+        padding-bottom: 8px;
+    }
+    .profile-info-container strong {
+        color: #d4a030;
+        font-weight: bold;
+        margin-left: 8px;
+    }
+    #edit-profile-btn {
+        background: linear-gradient(90deg,#d4a030 60%,#f9f3e6 100%);
+        color: #fff;
+        border: none;
+        border-radius: 24px;
+        padding: 12px 32px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 24px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        transition: background 0.2s;
+    }
+    #edit-profile-btn:hover {
+        background: linear-gradient(90deg,#f9f3e6 0%,#d4a030 100%);
+        color: #d4a030;
+    }
+    .section-title h2 {
+        text-align: center;
+        color: #d4a030;
+        font-size: 2.2em;
+        margin-top: 40px;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+    }
+    </style>
+</head>
+<body>
+
+   <!-- Header -->
+<header class="navbar">
+  <div class="logo"><a href="main.html">BrandName</a></div>
+  <nav>
+    <ul>
+      <li><a href="menu.html#meats">Meats</a></li>
+      <li><a href="menu.html#main-dishes">Main Dishes</a></li>
+      <li><a href="menu.html#sandwiches">Sandwiches</a></li>
+      <li><a href="menu.html#offers">Offers</a></li>
+    </ul>
+  </nav>
+  <div id="navbar-right">
+    <a href="login.html">Login</a>
+    <a href="custom.html">Customer Service</a>
+  </div>
+</header>
+
+    <div class="page-content-container">
+        <div class="section-title">
+            <h2>ملفي الشخصي</h2>
+        </div>
+        <div class="profile-info-container">
+            <p><strong>الاسم:</strong> <span id="profile-username"></span></p>
+            <p><strong>البريد الإلكتروني:</strong> <span id="profile-email"></span></p>
+            <p><strong>رقم الهاتف:</strong> <span id="profile-mobile"></span></p>
+            <button id="edit-profile-btn">تعديل الملف الشخصي</button>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.loggedIn) {
+      document.getElementById('profile-username').textContent = user.username;
+      document.getElementById('profile-email').textContent = user.email;
+      document.getElementById('profile-mobile').textContent = user.mobile || '';
+    } else {
+      window.location.href = 'login.html';
+    }
+
+    // زر تعديل الملف الشخصي (مثال: رسالة فقط)
+    document.getElementById('edit-profile-btn').onclick = function() {
+      alert('سيتم إضافة خاصية تعديل الملف الشخصي قريباً!');
+    };
+  });
+</script>
+</body>
+</html>
